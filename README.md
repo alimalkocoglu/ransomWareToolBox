@@ -1,4 +1,5 @@
-# RansomToolKit
+# ransomWareToolBox
+
 This tool box is to help processing ransomware data.
 Currently there are 4 tools built.
 The first time you rund the scripts you might need to download some of the libraries needed to run the scripts.
@@ -23,5 +24,3 @@ One important thing is all the header values MUST be server keywords. ( first na
 The script fixes common mistakes in csv files such as mismatching header numbers in the rows or " marks. 
 This script takes one argument, the file name to run. 
 
-# ransomWareToolBox
-# ransomWareToolBox
