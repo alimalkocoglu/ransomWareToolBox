@@ -4,6 +4,8 @@ from openpyxl import load_workbook
 import glob
 import re
 from time import perf_counter
+import datetime
+import logging
 # By default openpyxl does not guard against quadratic blowup or billion laughs xml attacks. To guard against these attacks install defusedxml.
 
 
@@ -19,12 +21,6 @@ def xls_to_xlsx (current_filename) -> None:
 
 extension = '.xlsx'
 
-
-def fileListBuild(extension):
-  ''' Returns a list of file names for the given extension parameter.'''
-  return glob.glob(f"*{extension}")
-
-filelist = fileListBuild(extension)
 
 # ask user input for sheets
 
@@ -51,6 +47,9 @@ def allSheets(filename, all_Sheets=True):
 
 
 if __name__ == '__main__':
+    log = logging.getLogger()
+    logging.basicConfig(filename=f"{datetime.date.today()}.log", level="DEBUG")
+
     INPUT = "input"
     OUTPUT = "output"
 
@@ -62,23 +61,25 @@ if __name__ == '__main__':
     user_input = input("your choice:")
     all_Sheets = False
     if user_input == "2":
-      all_Sheets = True
+        all_Sheets = True
 
     xsl_file_list = glob.glob('*.xls')
 
     for file in xsl_file_list:
-        print(f"Processing {file}")
+        logging.info(f"Processing {file}")
         start = perf_counter()
         try:
             xls_to_xlsx(file)
         except Exception as e:
-            print(e)
-        print(f"Processing took {perf_counter()- start:2f}")
+            logging.error(e)
+        logging.info(f"Processing took {perf_counter()- start:2f}")
 
-    # if all_Sheets == True :
     print("all sheets wanted")
     for file in glob.glob(f"*{extension}"):
         start = perf_counter()
-        print(f"Processing {file}")
-        allSheets(file, all_Sheets)
-        print(f"Processing took {perf_counter()- start:2f}")
+        logging.info(f"Processing {file}")
+        try:
+            allSheets(file, all_Sheets)
+        except Exception as e:
+            logging.error(e)
+        logging.info(f"Processing took {perf_counter()- start:2f}")
