@@ -17,10 +17,19 @@ Once it's run script will work on all the files with the .xlsx files.
 ### stackAllCsv
 The script can merge csv files with different headers or header value order.
 Once it's run it will work on all the files with .csv extension and create one .tsv file.
-One important thing is all the header values MUST be server keywords. ( first name >> namefirst) 
+One important thing is all the header values MUST be server keywords. ( first name >> namefirst)
 
 
 ### csvfix
-The script fixes common mistakes in csv files such as mismatching header numbers in the rows or " marks. 
-This script takes one argument, the file name to run. 
+The script fixes common mistakes in csv files such as mismatching header numbers in the rows or " marks.
+This script takes one argument, the file name to run.
 
+
+### Installation
+
+* Open a Terminal
+* chdir to the work folder
+* install the code
+* create a virtual environment
+* install the requirements
+* run the script

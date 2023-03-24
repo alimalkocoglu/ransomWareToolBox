@@ -5,7 +5,7 @@ import glob
 import re
 
 #xsl_conv.save_book_as(file_name='example.xls', dest_file_name='your-new-file-out.xlsx')
-#  !!!!!  Currently script doesn't convert xls files. !!!!! 
+#  !!!!!  Currently script doesn't convert xls files. !!!!!
 
 # By default openpyxl does not guard against quadratic blowup or billion laughs xml attacks. To guard against these attacks install defusedxml.
 
@@ -37,18 +37,18 @@ if user_input == "2":
 
 def csvWriter(sheetData,workBookName,sheetName):
   ''' receives a sheet data in list format  and the workbookname(excel file name) and sheet name to create a csv file.'''
-  
+
   with open (f"{workBookName.strip()}_{sheetName}.csv",'w') as csv_output:
     writer = csv.writer(csv_output, delimiter=',')
     for line in sheetData:
       writer.writerow(line)
-  
+
 
 def allSheets(filename):
   ''' receives an file name from the same directory and calls the convert2Csv function for all the sheets.'''
-  
+
   wb = load_workbook(filename=filename)
-  
+
   for sheet in wb.sheetnames:
     sheetName = sheet
     csv_data = []
@@ -69,7 +69,7 @@ def firstSheet(filename):
   for value in sheet.iter_rows(values_only=True):
     csv_data.append(list(value))
     filename = re.sub('\.xlsx','',filename)
-    csvWriter(csv_data,filename,"")
+  csvWriter(csv_data,filename,"")
 
 
 if all_Sheets == True :
@@ -78,6 +78,7 @@ if all_Sheets == True :
     allSheets(file)
 else:
   for file in filelist:
-    firstSheet(file)
+      print(file)
+      firstSheet(file)
 
 # allSheets('EligibleMultipleTabs.xlsx')
