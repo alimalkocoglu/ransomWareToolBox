@@ -1,3 +1,3 @@
-# Heads up about xls converter.
+# Heads Up
 
-The module it uses has some error that needs to be fixed on your local machine before using the script. Contact me for the fix if you can't figure it out.
+You can delete the log files or share them with me. 
