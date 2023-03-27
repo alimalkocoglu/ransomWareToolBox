@@ -149,12 +149,15 @@ def create_clean_csv(file,columns,date_stamp="unspecified_date"):
     os.system(f'csvcut -c {columns} {file} >> "cleaned"_{file}')
     os.system(f"mv 'cleaned_'{file} ./'output_files_'{date_stamp}")
 
-file_list = glob.glob('*.csv')
-for file in file_list:
-    header_trim_and_lower(file)
-    columns = header_compare(labels_to_keep,file)
-    create_clean_csv(file,columns,date_stamp)
-    os.remove(file)
+
+if __name__ == '__main__':
+
+    file_list = glob.glob('*.csv')
+    for file in file_list:
+        header_trim_and_lower(file)
+        columns = header_compare(labels_to_keep,file)
+        create_clean_csv(file,columns,date_stamp)
+        os.remove(file)
 
 print("Hello, I created a folder called 'input and the date stamp' and moved all the original files so records are safe.")
 
