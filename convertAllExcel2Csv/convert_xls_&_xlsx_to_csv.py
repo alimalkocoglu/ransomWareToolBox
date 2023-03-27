@@ -1,4 +1,4 @@
-import csv
+import csv 
 import pyexcel as xsl_conv
 from openpyxl import load_workbook
 import glob
@@ -10,11 +10,11 @@ import logging
 
 
 def xls_to_xlsx (current_filename) -> None:
-  ''' receives a file xls file name from the same directory converts it to .xlsx file'''
+    ''' receives a file xls file name from the same directory converts it to .xlsx file'''
 
-  new_file_name = re.sub('.xls','.xlsx',current_filename)
-  xsl_conv.save_book_as(file_name=current_filename, dest_file_name=new_file_name)
-  return
+    new_file_name = re.sub('.xls','.xlsx',current_filename)
+    xsl_conv.save_book_as(file_name=current_filename, dest_file_name=new_file_name)
+    return
 
 
 # converts all xsl files in the dir
@@ -25,7 +25,7 @@ extension = '.xlsx'
 # ask user input for sheets
 
 
-def allSheets(filename, all_Sheets=True):
+def convertExcel(filename, all_Sheets=True):
     ''' receives an file name from the same directory and calls the convert2Csv function for all the sheets.'''
 
     wb = load_workbook(filename=filename, read_only=True)
@@ -74,12 +74,12 @@ if __name__ == '__main__':
             logging.error(e)
         logging.info(f"Processing took {perf_counter()- start:2f}")
 
-    print("all sheets wanted")
     for file in glob.glob(f"*{extension}"):
         start = perf_counter()
         logging.info(f"Processing {file}")
         try:
-            allSheets(file, all_Sheets)
+            convertExcel(file, all_Sheets)
         except Exception as e:
             logging.error(e)
         logging.info(f"Processing took {perf_counter()- start:2f}")
+    print("file names are formatted as name of the main excel file combined with the sheet name")
